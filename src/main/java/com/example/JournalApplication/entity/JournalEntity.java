@@ -12,7 +12,7 @@ public class JournalEntity {
     private long id;
     private String title;
     private String content;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)  // ✅ Lazy ki jagah EAGER use karo
     @JoinColumn(name="user_id",nullable = false)
     private User user; //user class ka reference hai
 

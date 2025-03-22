@@ -1,5 +1,6 @@
 package com.example.JournalApplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NonNull;
@@ -24,5 +25,6 @@ public class User {
     private int version;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore  // ✅ Yeh Circular Dependency aur Lazy Loading issue fix karega
     private List<JournalEntity> journalEntities=new ArrayList<>();
 }
