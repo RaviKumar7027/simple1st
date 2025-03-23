@@ -21,12 +21,14 @@ public class SecurityConfig {
                         .requestMatchers("/login.html", "/css/**", "/js/**").permitAll()  // ✅ Static files allow
                         .requestMatchers("/hello/**").permitAll()  // ✅ `/hello/**` ke sare API bina login ke accessible honge
                         .requestMatchers("/users/**").permitAll()   // ✅ User API without authentication
+                        .requestMatchers("/weather").permitAll()
                         .anyRequest().authenticated()  // ✅ Baki sab authenticated requests rahengi
                 )
                 .formLogin(form -> form
                         .loginPage("/login.html")   // ✅ Custom login page
                         .loginProcessingUrl("/login")  // ✅ Form POST request handle
                         .permitAll()
+
                         .defaultSuccessUrl("/hello", true)
                 )
                 .logout(logout -> logout.logoutUrl("/logout"));

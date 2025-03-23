@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > HomeController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.JournalApplication.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: HomeController (com.example.JournalApplication.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HomeController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    14.3%
+  </span>
+  <span class="absValue">
+    (1/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    11.1%
+  </span>
+  <span class="absValue">
+    (1/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.JournalApplication.controller;
+&nbsp;
+&nbsp;import com.example.JournalApplication.entity.JournalEntity;
+&nbsp;import com.example.JournalApplication.service.JournalService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpHeaders;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/hello&quot;)
+<b class="fc">&nbsp;public class HomeController {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    private JournalService journalService;
+&nbsp;
+&nbsp;    @GetMapping(&quot;/h&quot;)
+&nbsp;    public String sayHello() {
+<b class="nc">&nbsp;        return &quot;hello my favourite spring boot&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ✅ Get All Journal Entries
+&nbsp;    @GetMapping(&quot;/abc&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;JournalEntity&gt;&gt; getAll() {
+<b class="nc">&nbsp;        return ResponseEntity.ok(journalService.getAllEntries());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ✅ Get Journal Entry By ID
+&nbsp;    @GetMapping(&quot;/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;JournalEntity&gt; getJournalById(@PathVariable Long id) {
+<b class="nc">&nbsp;        return ResponseEntity.ok(journalService.getJournalById(id));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ✅ Create New Journal Entry
+&nbsp;    @PostMapping(&quot;/p&quot;)
+&nbsp;    public ResponseEntity&lt;String&gt; createEntry(@RequestBody JournalEntity newEntry) {
+<b class="nc">&nbsp;        journalService.saveEntry(newEntry);</b>
+<b class="nc">&nbsp;        return ResponseEntity.status(HttpStatus.CREATED).body(&quot;Journal Entry Successfully Created!&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ✅ Update Journal Entry By ID
+&nbsp;    @PutMapping(&quot;/update/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;JournalEntity&gt; updateJournal(@PathVariable Long id, @RequestBody JournalEntity updatedJournal) {
+<b class="nc">&nbsp;        return ResponseEntity.ok(journalService.updateJournalEntry(id, updatedJournal));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ✅ Delete Journal Entry By ID
+&nbsp;    @DeleteMapping(&quot;/delete/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;String&gt; deleteJournal(@PathVariable Long id) {
+<b class="nc">&nbsp;        journalService.deleteJournalById(id);</b>
+<b class="nc">&nbsp;        return ResponseEntity.ok(&quot;Journal Entry Deleted Successfully!&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-03-21 05:21</div>
+</div>
+</body>
+</html>
