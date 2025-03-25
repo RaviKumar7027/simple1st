@@ -22,6 +22,7 @@ public class SecurityConfig {
                         .requestMatchers("/hello/**").permitAll()  // ✅ `/hello/**` ke sare API bina login ke accessible honge
                         .requestMatchers("/users/**").permitAll()   // ✅ User API without authentication
                         .requestMatchers("/weather").permitAll()
+                        .requestMatchers("/cron/**").permitAll()
                         .anyRequest().authenticated()  // ✅ Baki sab authenticated requests rahengi
                 )
                 .formLogin(form -> form
