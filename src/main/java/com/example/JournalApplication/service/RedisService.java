@@ -1,6 +1,5 @@
 package com.example.JournalApplication.service;
 
-
 import com.example.JournalApplication.entity.User;
 import com.example.JournalApplication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,8 @@ public class RedisService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUserById(Long userId) {
-        String redisKey = "user:" + userId;
+    public User getUserById(Long id) {
+        String redisKey = "user:" + id;
 
         // Pehle Redis Cache Check Karo
         User user = (User) redisTemplate.opsForValue().get(redisKey);
@@ -29,13 +28,22 @@ public class RedisService {
         }
 
         // Agar Redis Me Nahi Mila Toh Database Se Fetch Karo
-        user = userRepository.findById(userId).orElse(null);
+        user = userRepository.findById(id).orElse(null);
         if (user != null) {
             // Redis Me Cache Karo (10 Minutes Ke Liye)
-            redisTemplate.opsForValue().set(redisKey, user, 10, TimeUnit.MINUTES);
+            saveUserToCache(user);
         }
 
         return user;
     }
-}
 
+    public void saveUserToCache(User user) {
+        String redisKey = "user:" + user.getId();
+        redisTemplate.opsForValue().set(redisKey, user, 10, TimeUnit.MINUTES);
+    }
+
+    public void deleteUserFromCache(Long id) {
+        String redisKey = "user:" + id;
+        redisTemplate.delete(redisKey);
+    }
+}
