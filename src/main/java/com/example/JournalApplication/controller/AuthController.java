@@ -1,6 +1,7 @@
 package com.example.JournalApplication.controller;
 
 import com.example.JournalApplication.util.JwtUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import java.util.Map;
 
     @RestController
     @RequestMapping("/auth")
+    @Tag(name="AUTHENTICATION APIs")
     public class AuthController {
 
         private final JwtUtil jwtUtil;

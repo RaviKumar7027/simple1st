@@ -10,4 +10,9 @@ public class LoginController {
     public String showLoginPage() {
         return "redirect:/login.html"; // ✅ Static file ko redirect karega
     }
+    @GetMapping("/h")
+    public String hii(){
+        return "hello ravi";
+    }
+
 }

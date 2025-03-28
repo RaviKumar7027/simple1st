@@ -3,12 +3,14 @@ package com.example.JournalApplication.controller;
 
 //yha pr hmara token verify hoga shi ha ya glt
 import com.example.JournalApplication.util.JwtUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
 @RequestMapping("/secure")
+@Tag(name="HELLO APIs")
 public class HelloController {
 
     private final JwtUtil jwtUtil;

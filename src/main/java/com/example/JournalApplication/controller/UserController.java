@@ -2,6 +2,7 @@ package com.example.JournalApplication.controller;
 
 import com.example.JournalApplication.entity.User;
 import com.example.JournalApplication.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "USER APIs" ,description = "read update delete")
 public class UserController {
 
     @Autowired

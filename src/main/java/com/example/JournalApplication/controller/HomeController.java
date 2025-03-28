@@ -2,6 +2,7 @@ package com.example.JournalApplication.controller;
 
 import com.example.JournalApplication.entity.JournalEntity;
 import com.example.JournalApplication.service.JournalService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hello")
+@Tag(name="HOME APIs")
 public class HomeController {
 
     @Autowired
