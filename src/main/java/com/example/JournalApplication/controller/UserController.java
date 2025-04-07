@@ -1,6 +1,7 @@
 package com.example.JournalApplication.controller;
 
 import com.example.JournalApplication.entity.User;
+import com.example.JournalApplication.repository.UserRepository;
 import com.example.JournalApplication.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
 @Tag(name = "USER APIs" ,description = "read update delete")
 public class UserController {
+
+    @Autowired
+    private UserRepository userRepository;
+
 
     @Autowired
     private UserService userService;
@@ -46,4 +52,7 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully");
     }
+
+    // 🔍 GET user by ID
+
 }

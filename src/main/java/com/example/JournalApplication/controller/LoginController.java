@@ -32,7 +32,7 @@ public class LoginController {
         return "login"; // ✅ Thymeleaf ya Static HTML Render Karega
     }
 
-    @GetMapping("/h")
+    @GetMapping("/p")
     @ResponseBody // ✅ String response return karega bina kisi View ke
     public String hii() {
         return "hello ravi";

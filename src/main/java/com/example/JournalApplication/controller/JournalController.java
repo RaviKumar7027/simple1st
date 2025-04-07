@@ -1,10 +1,10 @@
 package com.example.JournalApplication.controller;
 
 import com.example.JournalApplication.entity.JournalEntity;
+import com.example.JournalApplication.repository.JournalRepository;
 import com.example.JournalApplication.service.JournalService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/hello")
 @Tag(name="HOME APIs")
-public class HomeController {
+public class JournalController {
+
+    @Autowired
+    JournalRepository journalRepository;
 
     @Autowired
     private JournalService journalService;
@@ -35,6 +38,16 @@ public class HomeController {
     public ResponseEntity<JournalEntity> getJournalById(@PathVariable Long id) {
         return ResponseEntity.ok(journalService.getJournalById(id));
     }
+
+//user or journal dono table ko relate kiya hai
+    @GetMapping("/journals/user/{userId}")
+    public ResponseEntity<List<JournalEntity>> getJournalsByUserId(@PathVariable Long userId) {
+        List<JournalEntity> journals = journalRepository.findByUserId(userId);
+        return ResponseEntity.ok(journals);
+    }
+
+
+
 
     // ✅ Create New Journal Entry
     @PostMapping("/p")
